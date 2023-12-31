@@ -1,0 +1,53 @@
+<html>
+    <head>  
+        <script> 
+        function registration() {
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            let obj = {
+                username: username,
+                password: password,
+            }
+            let allusers = localStorage.getItem('allusers');
+
+
+            if (allusers === null) 
+            {
+                allusers = []
+            }
+
+            else 
+            {
+                allusers = JSON.parse(allusers);
+                for (let i = 0; i < allusers.length; i++) {
+            if (allusers[i].username === username) {
+                alert("Username already exists. Please choose a different username.");
+                return; 
+            }
+
+            }
+            
+            allusers.push(obj);
+          
+            let jsonData = JSON.stringify(allusers);
+            localStorage.setItem("allusers", jsonData);
+            alert("Registered");
+            window.location.href="./login.html";
+        }
+    }
+    </script>
+    </head>
+<body>
+<form id="registerForm">
+    <h1>SIGN UP</h1>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="button" value="Submit" onclick="registration()">
+    
+</form>
+</body>
+</html>

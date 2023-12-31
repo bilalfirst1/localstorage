@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+function login() {
+    
+    var username = document.getElementById('loginUsername').value;
+    var password = document.getElementById('loginPassword').value;
+
+    
+    var storedUsers = JSON.parse(localStorage.getItem('allusers'));
+
+    
+    if (Array.isArray(storedUsers)) {
+      
+        for (let index = 0; index < storedUsers.length; index++) {
+          
+            var currentUser = storedUsers[index];
+
+           
+            if (username === currentUser.username && password === currentUser.password) {
+                window.location.href="./MyWeb.html";
+                alert('Login successful');
+               
+                return;
+            }
+        }
+
+        alert('Invalid username or password');
+    } else {
+        
+        alert('No users found');
+    }
+}
+        
+        
+
+    </script>
+<head>
+    <meta charset="UTF-8">
+    
+    <form id="loginForm">
+        <label for="loginUsername">Username:</label><br>
+        <input type="text" id="loginUsername" name="loginUsername"><br>
+        <label for="loginPassword">Password:</label><br>
+        <input type="password" id="loginPassword" name="loginPassword"><br>
+        <input type="button" value="Submit" onclick="login()">
+    </form>
+    
+</body>
+
+    
+</body>
+</html>
